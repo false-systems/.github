@@ -42,14 +42,10 @@ The engineer's role is shifting from *operator* to *policy maker*. We're buildin
 
 Every tool in this system was designed to answer one question an agent might ask.
 
-Not "show me a dashboard." Not "here are your logs." *Why did this happen, what was the chain of events, what should happen next, and how confident are we.*
+Not "show me a dashboard." Not "here are your logs." *Why did this happen, what was the chain of events, what should happen next, and how confident are we*
 
 That requires events with semantics embedded at the source — not inferred after the fact by an LLM squinting at unstructured text.
 
 ---
 
-## Status
 
-Active development. Berlin-based. Solo founder.
-
-CD Foundation Ambassador · Helm Committee · Berlin DevOps Meetup
