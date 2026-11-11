@@ -1,45 +1,72 @@
-## False Systems
+<img src="false-systems.svg" alt="False Systems: computing as craft." width="100%">
 
-Infrastructure for answering one question after the fact: **what did a
-non-human actor do, and under whose authority?**
+**Delegate more. Move faster. Keep control.**
 
-A log is a list of things that happened. Claiming that something *did not*
-happen needs a further fact — that the list is complete over the interval —
-and completeness is a property of the observer, not the observed. It is never
-itself an event, so it is never recorded. Coverage is the half of the record
-nobody stores.
+People and AI agents now work on the same tasks. The work crosses tools:
+a request becomes an agent session, a commit, a test run, a credential, a
+deployment. Each tool sees its own part, and the thread between the request,
+the permission to act and the result gets lost. False Systems builds the
+infrastructure that keeps that thread: one control plane for humans, AI agents
+and infrastructure.
 
-Attribution has a second gap. Cloud providers issue principals; what acts is an
-actor, and the two map many-to-many. One shared service account can be five
-agents. A stolen signing key mints tokens indistinguishable from legitimate
-ones.
+[false-systems.com](https://false-systems.com) ·
+[Manifesto](https://false-systems.com/manifesto.html) ·
+[Talk with us](https://false-systems.com/about.html)
 
-These repos are the parts of a record built to survive being read by someone who
-does not trust the party that produced it.
+## What we build
 
-### The record
+<img src="platform.svg" alt="People and agents start a piece of work. Control Plane coordinates who may do what, Habitat runs it on replaceable workers, and Evidence records what happened." width="100%">
 
-| repo | what it is |
+| | |
 |---|---|
-| [ahti](https://github.com/false-systems/ahti) | Append-only, tamper-evident evidence store. Rust. The substrate everything else writes to. |
-| [vartio](https://github.com/false-systems/vartio) | Reconstructs actors, delegation chains and coverage from stored claims. Elixir. |
-| [jälki](https://github.com/false-systems/jalki) | eBPF producer for process execution and socket activity — evidence that does not depend on a process describing itself. |
-| [syvä](https://github.com/false-systems/syva) | eBPF LSM enforcement. Experimental. |
+| [**Control Plane**](https://false-systems.com/control-plane.html) | Coordinates. Defines how work happens in your organisation: who takes part, who may decide, and what done means, for people and agents alike. |
+| [**Habitat**](https://false-systems.com/habitat.html) | Executes. Runs the work locally, remotely or inside your infrastructure. The work keeps its permissions, history and results when a worker stops or is replaced. |
+| [**Evidence**](https://false-systems.com/evidence.html) | Establishes. A checkable account of what happened, separate from the agent's own story, that keeps what was observed apart from what was inferred. |
 
-### Useful on their own
+## Open tools for working with coding agents
+
+Four small command-line tools, free and MIT licensed. Each one works alone.
+Together they take a change from an agent's first prompt to production:
+checked, reviewed by a second agent, landed and deployed, with no server and
+no pull request required.
+
+<img src="loop.svg" alt="A piece of work moves through five steps: start, check, review, land, deploy. toimija starts it, sykli does the other four, ohjaa holds what agents know, and vessa counts what agents used." width="100%">
+
+| Tool | What it does |
+|---|---|
+| [**toimija**](https://github.com/false-systems/toimija) | Starts an agent with the facts of the repository, and shows who is working where. |
+| [**sykli**](https://github.com/false-systems/sykli) | Runs the checks you declare and keeps proof. A second agent reviews the change; sykli lands and deploys only what is proven. |
+| [**ohjaa**](https://github.com/false-systems/ohjaa) | Holds what your agents are told: decisions, lessons, facts. Anyone can propose; a person decides. |
+| [**vessa**](https://github.com/false-systems/vessa) | Counts what your agents used, from the records they leave on disk. Numbers only, never prices; shared with your team through git. |
+
+They work with Claude Code, Codex, pi and opencode, on macOS and Linux. sykli
+and vessa also run on Windows; toimija and ohjaa run there under WSL.
+
+**Start with [Your first loop](https://github.com/false-systems/toimija/blob/main/docs/first-loop.md)**:
+one change, through all four tools.
+
+## What we hold to
+
+- **Independent.** The witness sits outside the agent. An agent never judges
+  its own change, and its own account is not the record.
+- **Honest.** Partial stays visibly partial. What could not be read is unknown,
+  never zero.
+- **Portable.** Your work, rules and records belong to you, not to an agent
+  vendor or to us.
+
+## Also open
 
 Not everything here is part of a product. Some of it solves a problem cleanly
-enough to stand alone, needs nothing else from this list, and is published for
-that reason.
+enough to stand alone, and is published for that reason.
 
-| repo | what it is |
-|---|---|
-| [rauha](https://github.com/false-systems/rauha) | Sealed execution zones — container-like isolation enforced in-kernel with eBPF. |
-| [sykli](https://github.com/false-systems/sykli) | CI with an explicit execution-contract boundary. |
+- [jälki](https://github.com/false-systems/jalki): ask the Linux kernel what went wrong, with eBPF probes.
+- [syvä](https://github.com/false-systems/syva): node-local eBPF enforcement that isolates workload zones. Experimental.
+- [rauta](https://github.com/false-systems/rauta): a Kubernetes API gateway in Rust.
+- [false-agent-protocol](https://github.com/false-systems/false-agent-protocol): versioned contracts between the tools.
 
-### Status
+## Status
 
-Early. Interfaces change. Nothing here is stable enough to build on without
-asking first.
+Early. Interfaces change. Ask before you build on anything here; the four
+tools for coding agents are the most settled.
 
-Berlin &amp; Helsinki · [false-systems.com](https://false-systems.com)
+<sub>False Systems · Berlin — Helsinki · computing as craft</sub>
